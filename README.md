@@ -24,6 +24,7 @@
       - Evaluating the performance of the models with Silhouette Score and Fowlkes Mallows Score
       - Exploring the labels generated
   4. Future planning on improving the models and Use Case Exploration  
+   
 ![image](https://user-images.githubusercontent.com/50670119/148485472-8a7e6315-e264-4be6-ac53-0866fbb3bdb6.png) 
 _Project Development Stages_
 
