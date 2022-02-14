@@ -1,36 +1,42 @@
-# Using machine learning to explore corporate email data
-#### Everyday, we receive tones of emails in our corporate email address including job-related emails, internal announcements, external spam emails and etc. This issue becomes more significant when we look at the company's level. Therefore, before we start any machine learning projects to explore valuable insights, we need to filter out the unnecessary emails to reduce the noise in our dataset.
+# Building a corporate email labeling tool with weak labels (Snorkel used).
+Everyday, we receive tones of emails in our corporate email address including job-related emails, internal announcements, external spam emails and etc. This issue becomes more significant when we look at the company's level. Therefore, before we start any machine learning projects to explore valuable insights, it is desirable to filter the unnecessary emails to reduce the noise in our dataset.
 
-#### The goal of this machine learning project is to build a tool for classifying different types of emails by leveraging supervised, unsupervised and semi-supervised machine learning techniques. The expected outcome of the models is to classify the emails as spam and non-spam (ham), and further label the ham emails into categories found by unsupervised learning algorithm. 
+The objective of this machine learning project is to build an email labeling tool different types of emails by leveraging supervised and unsupervised machine learning techniques. The expected output of the models is to classify the emails as spam and non-spam (ham), and further label the ham emails into topics identified by the topic model.
 
-#### The tool is of benefit to other email machine learning project by means of:
-1. Helping the users to pick appropriate emails into the training data according to the labels generated.
-2. Using the labels as one of the features in their machine learning model (similar to using sentiment score as a new feature).
+The tool alone can be used in two ways:
+1. Spam Classifier
+2. Topic Model
+
+Also, this tool is of benefit to other email machine learning project by means of:
+1. Helping the users to select appropriate emails into the training data according to the labels generated.
+2. Using the labels as extra features in other machine learning models (like using sentiment score as a new feature, topic scores are used instead)  
+
+### Challenge of the project - Unlabeled Data
+To build the spam classifier, labeled data are needed to validate the classifier regardless supervised or unsupervised method is used. However, the emails in the dataset are all **unlabeled** that I need to manually label **~8,000** emails before building any models. This is time-consuming and not practical in corporate settings with 2 reasons: 
+1. Not every company is willing to spend many resources on the exploratory project. 
+2. It is hard to maintain the model monitoring process after deployment (need to label large amount of emails before every assessment).
+
+Therefore, I instead adopted a **weak-supervised** method to label the emails which dramatically reduce the number of manually labeled data up to 20% of the orginal amount. **Snorkel** - is the package I used in this project considering its flexibility to adopt different types of labeling functions.
 
 
 ## Project Flow
-#### The final output of the model consists of multiple models and the development stages of the project are as below:
+The final output of the model consists of multiple models and the development stages of the project are as below:
   1. Data Collection and Understanding the Data
-  2. Building Spam Classification Models
-      - Data Cleaning and Preprocessing
-      - Exploring the difference between Bag of Words (BoW), TF-IDF, Word2Vec and Prebuilt Word2Vec
-      - Building Basic Supervised Models 
-      - Model Tuning 
-      - Building Ensemble Models
-      - Final Evaluation and Model Selection
-  3. Topic Modelling
-      - Data Cleaning and Preprocessing
-      - Building Unsupervised Models
-      - Evaluating the performance of the models with Silhouette Score and Fowlkes Mallows Score
-      - Exploring the labels generated
-  4. Future planning on improving the models and Use Case Exploration  
+  2. Generate Weak Labels with Snorkel Label Model
+      - Testing different labeling functions
+  3. Building Spam Classification Models
+      - Exploring the difference between TF-IDF, Word2Vec and Prebuilt Word2Vec 
+  4. Building the Topic Model
+  5. Final Model Evaluation
    
-![image](https://user-images.githubusercontent.com/50670119/148485472-8a7e6315-e264-4be6-ac53-0866fbb3bdb6.png) 
+![image](https://user-images.githubusercontent.com/50670119/153826702-e2fc293f-6533-431c-bcc7-2fe853fc51af.png)
 _Project Development Stages_
 
 ## Machine Learning Techniques used in the project
+  ### Weak Supervised Model:
+  - Snorkel Label Model
+  
   ### Word Embedding Techniques:
-  - Bag of Words (BoW)
   - TF-IDF
   - Word2Vec
   - Prebuilt Word2Vec from Google
@@ -43,17 +49,13 @@ _Project Development Stages_
   - XGBoost
   
   ### Unsupervised Learning Models:
-  - KMean
   - Latent Dirichlet allocation
   - Latent semantic analysis
+ 
+## Dataset
+#### Enron email dataset will be used used in this project. To replicate the email patterns in a department's mail box, I picked one employee's mail box for developing the models. (Assuming the employee worked for only one department during the period)
 
-## Data Collection and Understanding the Data
-#### Enron email dataset and Hillary Clinton email dataset are used in this project.
   - Enron email raw dataset: https://www.kaggle.com/wcukierski/enron-email-dataset
-  - Labeled Enron email dataset (ham/spam): http://nlp.cs.aueb.gr/software_and_datasets/Enron-Spam/index.html
-  - Hillary Clinton email: https://www.kaggle.com/kaggle/hillary-clinton-emails  
-  
-#### The Enron email dataset will be the main dataset used throughout the project while the Hillary Clinton email will be used for validating the models built and model methodologies.
 
-#### As the Hillary Clinton email dataset behaves more close to personal emails while Enron's emails are more related to the business side. It is expected that the ML models built based on Enron emails cannot be directly applied to Hillary Clinton email dataset. Hence, this project will also study if the model methodologies is transferable to other email data. 
+#### Jeff Dasovich's mail box will be used. There are 26,371 emails in total from 63 folders from 1999 to 2002.
 
