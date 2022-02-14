@@ -1,5 +1,5 @@
 ### This folder contains all the codes from preaparing the data to building the final models. 
-
+#### To generate the model, run the files below with the order given. The data output from each files will be saved in the "data" directory automatically.
 1. [EmailClassification_BasicFunction.py][1]: contains some helper functions to be used throughout the project
 2. [EmailClassification_InitializeData.py][2]: imports the raw data and do the initial cleansing of data
 3. [EmailClassification_cleaning.py][3]: this file further cleanse the data and modify the data format to help with the model training process later
