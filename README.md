@@ -59,3 +59,6 @@ _Project Development Stages_
 
 #### Jeff Dasovich's mail box will be used. There are 26,371 emails in total from 63 folders from 1999 to 2002.
 
+## Model Development Process and Model Result
+#### To learn more about the process and algorithms I tested during the project, you can visit this file [Model Explanation and Outputs](https://github.com/jasonlkh-wa/Building-a-corporate-email-labeling-tool-with-weak-labels/blob/main/Model%20Explanation%20and%20Outputs.pptx).  
+#### I have talked about how I approaches the problem and build the model step by step (including the reasons choosing each algorithms) and the benefits of building the models in this way comparing to building email-related ML models in the traditional ways.
