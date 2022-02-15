@@ -15,9 +15,15 @@ def import_pickle(path:str):
     return df
 
 def extract_bodymsg(df):
+    """
+    Combine the Subject and the body message of the email.
+    """
     return pd.DataFrame(df['Subject'] + " " + df["body_msg"], columns = ['msg'], index=df.index)
 
 def regex_tokenizer(text, stopwords, limit=False):
+    """
+    The customzied word tokenizer for emails.
+    """
     output = []
     Tokenizer = RegexpTokenizer(r"n't|([a-z]+[-_]?[a-z]+)|[a-z]+[a-z0-9]*", gaps=False)
     for i in Tokenizer.tokenize(text.lower()):
