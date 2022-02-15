@@ -37,6 +37,9 @@ np.random.seed(1) # set seed for sklearn
 
 wnl = WordNetLemmatizer()
 def lemmatization(sentence:list):
+    """
+    Detect the part of speech of the word and perform word lemmatization.
+    """
     output = []
     for word, tag in pos_tag(sentence):
         tag = tag[0].lower() if tag[0].lower() in ['a', 'r', 'n', 'v'] else 'n'
@@ -45,6 +48,9 @@ def lemmatization(sentence:list):
 
 
 def word2vec_average(token_list:list, w2v_model):
+    """
+    Averaging the word2vec score of the input.
+    """
     embedding_sum = np.zeros(w2v_model[0].shape)
     count = 0
     for i in token_list:
@@ -67,18 +73,27 @@ class Classifier():
         #self.gaussianNB = GaussianNB(**kwargs.get('gaussianNB', {}))  # users can add any models here
 
     def fitall(self, x_train, y_train):
+        """
+        Fit all the models within the instance.
+        """
         models = [i for i in dir(self) if not i.startswith("__") and not callable(getattr(self, i))]
         for model in models:
             getattr(self, model).fit(x_train, y_train)
         print('-----All models are fit-----')
 
     def cross_val_score(self, x_train, y_train, cv=3):
+        """
+        Perform cross validation among the models.
+        """
         models = [i for i in dir(self) if not i.startswith("__") and not callable(getattr(self, i))]
         for model in models:
             cross_val = cross_val_score(getattr(self, model), x_train, y_train, cv=cv, verbose=True)
             print(f"model: {model}, avg_score: {cross_val.mean()}\nscores: {cross_val}")
     
     def overfit_test(self, x_train, y_train, x_test, y_test, model=False):
+        """
+        Calculate the accuracy, precision and recall of both train set and test set.
+        """
         print('Overfit Test')
         if model == False:
             models = [i for i in dir(self) if not i.startswith("__") and not callable(getattr(self, i))]
@@ -92,12 +107,18 @@ class Classifier():
         print('Overfit Test Ended')
 
     def gridsearchcv(self, model, x_train, y_train, param_grid):
+        """
+        Perform Grid Search on one of the models and return the grid.
+        """
         grid = GridSearchCV(getattr(self, model), param_grid=param_grid, cv=3, verbose=True, return_train_score=True, scoring=['precision', 'recall', 'f1'], refit='precision')
         grid.fit(x_train, y_train)
         print(f"best params: {grid.best_params_}\nbest score: {grid.best_score_}")
         return grid
 
     def predict(self, x_train, model=False)->dict:
+        """
+        Predicts the result and saved all the result in a dictionary. The result can retrieved by calling the dictionary with the model name defined in Classifier, e.g. dict['logisticRegression']
+        """
         print('Predicting the result')
         output = {}
         if model == False:
@@ -110,6 +131,9 @@ class Classifier():
         return output
 
     def majority_predict(self, x_train, model=None):
+        """
+        Predict the result based on majority vote approach.
+        """
         output = self.predict(x_train)
         pred = np.zeros(len(x_train))
         model_count = 0
@@ -124,6 +148,9 @@ def ensemble_result(x, clf, models=['logisticRegression', 'svc', 'xgboost']):
     return pd.DataFrame([getattr(clf, model).predict(x) for model in models], index=models, columns=x.index).T
 
 def print_prediction_metrics(prediction, y, set_name=''):
+    """
+    Print all the model evaluation metrics.
+    """
     print(f"{set_name} set result:")
     print(confusion_matrix(y, prediction))
     print('precision:', precision_score(y, prediction))
