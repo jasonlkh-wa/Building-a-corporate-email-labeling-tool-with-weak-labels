@@ -40,6 +40,9 @@ np.random.seed(1) # set seed for sklearn
 
 wnl = WordNetLemmatizer()
 def lemmatization(sentence:list):
+    """
+    Detect the part of speech of the word and perform word lemmatization.
+    """
     output = []
     for word, tag in pos_tag(sentence):
         tag = tag[0].lower() if tag[0].lower() in ['a', 'r', 'n', 'v'] else 'n'
