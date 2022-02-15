@@ -11,5 +11,5 @@
 [2]: https://github.com/jasonlkh-wa/Building-a-corporate-email-labeling-tool-with-weak-labels/blob/main/code/EmailClassification_InitializeData.py
 [3]: https://github.com/jasonlkh-wa/Building-a-corporate-email-labeling-tool-with-weak-labels/blob/main/code/EmailClassification_cleaning.py
 [4]: https://github.com/jasonlkh-wa/Building-a-corporate-email-labeling-tool-with-weak-labels/blob/main/code/Dasovich_Snorkel_Label_Model.py
-[5]: https://github.com/jasonlkh-wa/Building-a-corporate-email-labeling-tool-with-weak-labels/blob/main/Dasovich_Word2Vec_External_Spam_Classificaiton_vanilla.py
+[5]: https://github.com/jasonlkh-wa/Building-a-corporate-email-labeling-tool-with-weak-labels/blob/main/code/Dasovich_Word2Vec_External_Spam_Classificaiton_vanilla.py
 [6]: https://github.com/jasonlkh-wa/Building-a-corporate-email-labeling-tool-with-weak-labels/blob/main/code/Dasovich_TopicModel.py
