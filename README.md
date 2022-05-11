@@ -11,7 +11,12 @@ Also, this tool is of benefit to other email machine learning project by means o
 1. Helping the users to select appropriate emails into the training data according to the labels generated.
 2. Using the labels as extra features in other machine learning models (like using sentiment score as a new feature, topic scores are used instead)  
 
-### Challenge of the project - Unlabeled Data
+## Model Development Process and Model Result
+#### To learn more about the process and algorithms I tested during the project, you can visit this file [Model Explanation and Outputs](https://github.com/jasonlkh-wa/Building-a-corporate-email-labeling-tool-with-weak-labels/blob/main/Model%20Explanation%20and%20Output.pdf).  
+#### I have talked about how I approaches the problem and build the model step by step (including the reasons choosing each algorithms) and the benefits of building the models in this way comparing to building email-related ML models in the traditional ways.
+
+
+## Challenge of the project - Unlabeled Data
 To build the spam classifier, labeled data are needed to validate the classifier regardless supervised or unsupervised method is used. However, the emails in the dataset are all **unlabeled** that I need to manually label **~8,000** emails before building any models. This is time-consuming and not practical in corporate settings with 2 reasons: 
 1. Not every company is willing to spend many resources on the exploratory project. 
 2. It is hard to maintain the model monitoring process after deployment (need to label large amount of emails before every assessment).
@@ -58,7 +63,3 @@ _Project Development Stages_
   - Enron email raw dataset: https://www.kaggle.com/wcukierski/enron-email-dataset
 
 #### Jeff Dasovich's mail box will be used. There are 26,371 emails in total from 63 folders from 1999 to 2002.
-
-## Model Development Process and Model Result
-#### To learn more about the process and algorithms I tested during the project, you can visit this file [Model Explanation and Outputs](https://github.com/jasonlkh-wa/Building-a-corporate-email-labeling-tool-with-weak-labels/blob/main/Model%20Explanation%20and%20Outputs.pptx).  
-#### I have talked about how I approaches the problem and build the model step by step (including the reasons choosing each algorithms) and the benefits of building the models in this way comparing to building email-related ML models in the traditional ways.
